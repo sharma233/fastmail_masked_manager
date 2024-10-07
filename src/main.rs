@@ -1,7 +1,6 @@
 use tokio;
 
 mod jmap_lib;
-use jmap_lib::jmap_error::JMAPError;
 use jmap_lib::jmap_reqs::set_masked_email;
 use core::panic;
 use std::env;
