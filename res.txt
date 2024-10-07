@@ -1,0 +1,2 @@
+serialized ={"using":["https://www.fastmail.com/dev/maskedemail","https://www.fastmail.com/dev/maskedemail"],"methodCalls":[["MaskedEmail/set",{"description":"CLITest","forDomain":"CLITest.com","accountId":"u25b140fc"},"0"]]}
+body = "{\"methodResponses\":[[\"MaskedEmail/set\",{\"accountId\":\"u25b140fc\",\"newState\":null,\"updated\":{},\"destroyed\":[],\"created\":{},\"oldState\":null},\"0\"]],\"sessionState\":\"cyrus-46338;p-6d4d3206cd;s-67004b2b190ee988\",\"latestClientVersion\":\"\"}"
