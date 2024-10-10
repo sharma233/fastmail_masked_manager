@@ -1,62 +1,13 @@
-use serde::{Deserialize, Serialize};
 use reqwest::Method;
 use std::collections::HashMap;
+use super::models::jmap_set::{CreateParams, CreateBody, JMAPSetReqBody};
 
 pub const USING_MASKED: &str = "https://www.fastmail.com/dev/maskedemail";
 pub const BASE_URL: &str = "https://api.fastmail.com/jmap/api/";
 pub const MASKEDEMAIL_SET_METHOD_TYPE: &str = "MaskedEmail/set";
 
-#[derive(Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct CreateParams {
-    description: String,
-    for_domain: String,
-}
-
-#[derive(Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct CreateBody {
-    pub account_id: String,
-    pub create: HashMap<String, CreateParams>
-}
-
-#[derive(Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct JMAPSetReqBody {
-    pub using: Vec<String>,
-    pub method_calls: Vec<(String, CreateBody, String)>
-}
-
-#[derive(Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct MaskedEmail {
-    pub last_message_at: Option<String>,
-    pub email: String,
-    pub created_at: String,
-    pub id: String,
-    pub state: String,
-    pub url: Option<String>,
-    pub created_by: String
-}
-
-#[derive(Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct CreateResBody {
-    pub created: HashMap<String, MaskedEmail>,
-    pub old_state: Option<String>,
-    pub new_state: Option<String>,
-    pub account_id: String
-}
-
-#[derive(Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct JMAPSetResBody {
-    pub latest_client_version: String,
-    pub session_state: String,
-    pub method_responses: Vec<(String, CreateResBody, String)>,
-}
-
-pub async fn set_masked_email(api_key: &str, acc_id: &str, for_domain: &str, desc: &str) -> Result<reqwest::Response, reqwest::Error> {
+pub async fn set_masked_email(api_key: &str, acc_id: &str, for_domain: &str, desc: &str) ->
+Result<reqwest::Response, reqwest::Error> {
     let client = reqwest::Client::new();
     let create_params = CreateParams {
         description: desc.to_string(),

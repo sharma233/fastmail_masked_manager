@@ -1,7 +1,8 @@
 use tokio;
 
 mod jmap_lib;
-use jmap_lib::jmap_reqs::{set_masked_email,JMAPSetResBody};
+use jmap_lib::models::jmap_set_response::JMAPSetResBody;
+use jmap_lib::jmap_reqs::set_masked_email;
 use core::panic;
 use std::env;
 use std::io::{self, Write};
