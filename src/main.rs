@@ -55,5 +55,5 @@ async fn main() {
     let deserialized: JMAPSetResBody = serde_json::from_str(&body_txt).unwrap();
 
     let email = &deserialized.method_responses[0].1.created.get(&alias).unwrap().email;
-    let _ = io::stdout().write_all(email.as_bytes());
+    println!("{email}");
 }
